@@ -6,7 +6,7 @@ const multer = require("multer");
 const upload = multer();
 const router = express.Router();
 
-router.route("/").get(skillController.getSkillController); //add get all skills controller
+router.route("/").get(skillController.getSkillController);
 
 router.post(
   "/",
@@ -14,6 +14,8 @@ router.post(
   skillController.createSkillController,
 );
 
-router.route("/").patch(authenticate); //update controller
+router.route("/").patch([upload.single("file"), authenticate], skillController.updateSkillController);
+
+router.route('/').delete(skillController.deleteSkillController)
 
 module.exports = router;
