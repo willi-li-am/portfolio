@@ -1,5 +1,5 @@
 var admin = require("firebase-admin");
-require('dotenv').config();
+require("dotenv").config();
 
 var serviceAccount = require("./serviceAccountKey.json");
 
@@ -9,7 +9,7 @@ admin.initializeApp({
 });
 
 const authAdmin = admin.auth();
-const bucket = admin.storage().bucket()
+const bucket = admin.storage().bucket();
 
 module.exports = {
   authAdmin,
