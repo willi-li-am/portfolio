@@ -24,9 +24,8 @@ app.post('/upload', [upload.single('file'), authenticate], async (req, res) => {
         if (!req.user.auth) {
             throw new Error("Unauthorized")
         }
-        const url = await uploadFile(req.file)
-        console.log(url)
-        res.send("OK")
+        const url = await uploadFile(req.file, "images", req.body.fileName)
+        res.send(url)
     } catch(err) {
         console.log(err)
         res.status(400).send(err)

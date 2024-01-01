@@ -4,7 +4,6 @@ const authAdmin = firebase.authAdmin
 const authenticate = async (req, res, next) => {
     try{
         const bearerToken = req.headers.authorization?.split(' ')
-        console.log(bearerToken)
         if (!bearerToken || bearerToken.length !== 2) {
             throw new Error("Not authorized")
         }
