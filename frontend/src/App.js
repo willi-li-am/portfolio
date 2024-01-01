@@ -5,6 +5,7 @@ import app from './firebase';
 
 const FileUploadForm = () => {
   const [file, setFile] = useState(null);
+  const auth = getAuth(app)
 
   // Handle file change
   const handleFileChange = (e) => {
@@ -22,7 +23,12 @@ const FileUploadForm = () => {
 
     const formData = new FormData();
     formData.append('file', file);
-    const token = await getAuth(app).currentUser?.getIdToken()
+    if (!auth.currentUser) {
+      alert('User not authenticated');
+      return;
+    }
+    const token = await auth.currentUser.getIdToken()
+    console.log(token)
 
     try {
       const response = await axios.post('http://localhost:8080/upload', formData, {

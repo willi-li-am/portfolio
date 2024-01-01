@@ -21,6 +21,9 @@ app.use(express.json())
 
 app.post('/upload', [upload.single('file'), authenticate], async (req, res) => {
     try {
+        if (!req.user.auth) {
+            throw new Error("Unauthorized")
+        }
         const url = await uploadFile(req.file)
         console.log(url)
         res.send("OK")
