@@ -14,8 +14,15 @@ router.post(
   skillController.createSkillController,
 );
 
-router.route("/").patch([upload.single("file"), authenticate], skillController.updateSkillController);
+router
+  .route("/")
+  .patch(
+    [upload.single("file"), authenticate],
+    skillController.updateSkillController,
+  );
 
-router.route('/').delete(skillController.deleteSkillController)
+router
+  .route("/:name")
+  .delete(authenticate, skillController.deleteSkillController);
 
 module.exports = router;
