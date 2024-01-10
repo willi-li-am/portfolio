@@ -16,8 +16,8 @@ const authenticate = async (req, res, next) => {
       req.user.auth = true;
       next();
       return;
-    } else{
-        throw new Error("Not authorized");
+    } else {
+      throw new Error("Not authorized");
     }
   } catch (err) {
     console.log(err);
